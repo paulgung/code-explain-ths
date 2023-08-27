@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
-
-const outputChannel = vscode.window.createOutputChannel('代码解释');
+import getWebviewContent from './getWebviewContent';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -13,12 +12,11 @@ export function activate(context: vscode.ExtensionContext) {
 			const selection = editor.selection;
 			const codeBlock = editor.document.getText(selection);
 
-
 			// 创建一个 Webview 面板
 			const panel = vscode.window.createWebviewPanel(
 				'codeExplanation',
 				'代码解释',
-				vscode.ViewColumn.Three,
+				vscode.ViewColumn.One,
 				{}
 			);
 	
@@ -30,19 +28,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(disposable);
 
-	function getWebviewContent(codeBlock: string): string {
-		// 构建 Webview 的 HTML 内容
-		return `
-			<html>
-			<body>
-				<h1>源代码：</h1>
-				<pre>${codeBlock}</pre>
-				<h1>代码解释：</h1>
-				<pre>${codeBlock}</pre>
-			</body>
-			</html>
-		`;
-	}
 }
 
 export function deactivate() {}
