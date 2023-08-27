@@ -3,8 +3,6 @@ import getWebviewContent from './getWebviewContent';
 
 export function activate(context: vscode.ExtensionContext) {
 
-	console.log('Congratulations, your extension "code-explain-ths" is now active!');
-
 	const disposable = vscode.commands.registerCommand('code-explain-ths.explainCode', () => {
 		// 获取用户选中的代码块
 		const editor = vscode.window.activeTextEditor;
